@@ -1,4 +1,4 @@
-# taller1_JavaSpring
+# Taller 1 - ACM Java Spring
 Taller de Java Spring del grupo ACM UD
 
 ## Grupo 11
