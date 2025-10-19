@@ -1,5 +1,5 @@
 # Punto 2
-En este documento se responderá el punto número 2 del taller de Java Spring de ACM.
+En este archivo se responderá el punto número 2 del taller de Java Spring de ACM.
 
 ## Problema
 El problema consiste en que hay un solo carrito para todos los usuarios. Cuando un usuario x ingresa un producto x1, y luego un usuario y ingresa un producto y1, ambos usuarios verán los dos productos, aunque cada uno solo haya agregado uno. Es decir, verán un carrito con 2 productos, x1 y y1.
