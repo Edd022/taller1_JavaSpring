@@ -2,6 +2,8 @@ package com.acmspring.co.punto2;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class ProductService {
@@ -11,6 +13,8 @@ public class ProductService {
 
     //Carro individual con ObjectProvider
     private final ObjectProvider<ShoppingCart> proveedorDeCarritos;
+    //Mapa para mantener los carritos por usuario
+    private final Map<String, ShoppingCart> carritosUsuarios = new HashMap<>();
 
     //Constructor
     public ProductService(ShoppingCart carritoCompartido, 
@@ -26,11 +30,15 @@ public class ProductService {
         System.out.println(carritoCompartido);
     }
 
-    //Solución, proveedor de carritos ya es implementado con un ObjectProvider
+    //Solución con persistencia usando Map
     public void comprarConCarritoIndividual(String usuario, String producto) {
-        ShoppingCart carritoNuevo = proveedorDeCarritos.getObject();
-        carritoNuevo.setUsuario(usuario);
-        carritoNuevo.agregarProducto(producto);
-        System.out.println(carritoNuevo);
+        ShoppingCart carritoUsuario = carritosUsuarios.computeIfAbsent(usuario, k -> {
+            ShoppingCart nuevoCarrito = proveedorDeCarritos.getObject();
+            nuevoCarrito.setUsuario(usuario);
+            return nuevoCarrito;
+        });
+        
+        carritoUsuario.agregarProducto(producto);
+        System.out.println(carritoUsuario);
     }
 }
